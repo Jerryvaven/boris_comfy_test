@@ -90,31 +90,6 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-
-  /* Custom shadow utilities with yellow and orange */
-  .shadow-yellow {
-    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
-  }
-
-  .shadow-yellow-lg {
-    box-shadow: 0 8px 30px rgba(255, 193, 7, 0.4);
-  }
-
-  .shadow-orange {
-    box-shadow: 0 4px 15px rgba(245, 124, 0, 0.3);
-  }
-
-  .shadow-orange-lg {
-    box-shadow: 0 8px 30px rgba(245, 124, 0, 0.4);
-  }
-
-  .shadow-yellow-orange {
-    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3), 0 0 20px rgba(245, 124, 0, 0.2);
-  }
-
-  .shadow-yellow-orange-lg {
-    box-shadow: 0 8px 30px rgba(255, 193, 7, 0.4), 0 0 40px rgba(245, 124, 0, 0.3);
-  }
 }
 
 /* Custom scrollbar */
@@ -204,19 +179,11 @@ body {
 }
 
 .marquee-left .marquee-content {
-  animation: marquee-left 60s linear infinite;
-}
-
-.marquee-left:hover .marquee-content {
-  animation-play-state: paused;
+  animation: marquee-left 30s linear infinite;
 }
 
 .marquee-right .marquee-content {
-  animation: marquee-right 60s linear infinite;
-}
-
-.marquee-right:hover .marquee-content {
-  animation-play-state: paused;
+  animation: marquee-right 30s linear infinite;
 }
 
 

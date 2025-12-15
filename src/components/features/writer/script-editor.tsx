@@ -71,7 +71,7 @@ export function ScriptEditor({
   return (
     <div className="flex-1 flex flex-col overflow-hidden bg-gray-950">
       {/* Page Header */}
-      <div className="sticky top-0 bg-gray-950 border-b-2 border-gray-700 p-4 z-10">
+      <div className="sticky top-0 bg-gray-950 border-b-2 border-gray-700 p-4 ">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Button

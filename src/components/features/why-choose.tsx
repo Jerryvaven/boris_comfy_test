@@ -1,118 +1,73 @@
 "use client"
+
+import React from 'react'
 import { motion } from 'framer-motion'
-import { WHY_CHOOSE_FEATURES } from '@/constants/why-choose'
+import { Target, Zap, FileText, DollarSign } from 'lucide-react'
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3,
-    },
+const features = [
+  {
+    title: '18 Art Styles',
+    description: 'From cartoon to photorealistic',
+    icon: Target,
   },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
+  {
+    title: 'Instant Generation',
+    description: 'Create comics in minutes, not months',
+    icon: Zap,
   },
-}
+  {
+    title: 'Screenplay Format',
+    description: 'Professional writing interface',
+    icon: FileText,
+  },
+  {
+    title: 'Monetize Your Work',
+    description: 'Sell your comics in our shop',
+    icon: DollarSign,
+  },
+]
 
 export function WhyChoose() {
-  const titleText = "WHY CHOOSE INKTRON?"
-  const titleLetters = titleText.split("")
-
   return (
-    <section className="py-20 bg-[#181818]">
+    <section className="py-20 bg-gray-950">
       <div className="max-w-6xl mx-auto px-4">
-        <motion.div
-          className="text-4xl md:text-5xl font-extrabold text-center mb-16 text-yellow-400 tracking-wide uppercase flex justify-center items-center flex-wrap"
-          style={{letterSpacing: '0.03em'}}
-          initial="hidden"
-          whileInView="visible"
+        <motion.h2 
+          className="text-3xl md:text-4xl font-bold text-center text-white mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          variants={{
-            visible: {
-              transition: {
-                staggerChildren: 0.08,
-              }
-            }
-          }}
         >
-          {titleLetters.map((letter, index) => (
-            <motion.span
-              key={index}
-              className={letter === " " ? "mx-2" : ""}
-              variants={{
-                hidden: {
-                  opacity: 0,
-                  y: 50,
-                  rotateX: -90,
-                  scale: 0.5
-                },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  rotateX: 0,
-                  scale: 1,
-                  transition: {
-                    duration: 0.6,
-                    ease: "easeOut",
-                    type: "spring",
-                    stiffness: 200,
-                    damping: 15
-                  }
-                }
-              }}
-              whileHover={{
-                scale: 1.2,
-                color: "#f97316", // orange-500
-                transition: { duration: 0.2 }
-              }}
-            >
-              {letter}
-            </motion.span>
-          ))}
-        </motion.div>
+          Why Choose Inktron?
+        </motion.h2>
         
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-        >
-          {WHY_CHOOSE_FEATURES.map((feature, index) => {
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {features.map((feature, index) => {
             const Icon = feature.icon
             return (
               <motion.div
                 key={feature.title}
-                variants={itemVariants}
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.2 },
-                }}
-                className="flex flex-col items-center text-center p-6 rounded-lg bg-[#1a1a1a] hover:bg-[#202020] transition-colors duration-300 cursor-pointer"
+                className="text-center group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
               >
-                <motion.div
-                  whileHover={{ rotate: 360, scale: 1.2 }}
-                  transition={{ duration: 0.5 }}
-                  className="mb-4"
-                >
-                  <Icon className="w-14 h-14 text-yellow-400" strokeWidth={2.5} />
-                </motion.div>
-                <div className="font-extrabold text-lg uppercase text-yellow-400 mb-1 tracking-wide">{feature.title}</div>
-                <div className="text-gray-300 text-base font-normal">{feature.description}</div>
+                <div className="w-16 h-16 bg-yellow-500/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-yellow-500/20 transition-colors">
+                  <Icon className="w-8 h-8 text-yellow-500" />
+                </div>
+                
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  {feature.title}
+                </h3>
+                
+                <p className="text-gray-400">
+                  {feature.description}
+                </p>
               </motion.div>
             )
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

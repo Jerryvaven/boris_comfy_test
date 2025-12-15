@@ -198,9 +198,9 @@ function MarqueeRow({ comics, direction = 'left' }: { comics: typeof showcaseCom
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-4">
-                <h3 className="text-white text-sm font-medium line-clamp-2">
+                {/* <h3 className="text-white text-sm font-medium line-clamp-2">
                   {comic.title}
-                </h3>
+                </h3> */}
               </div>
             </div>
           </Link>
