@@ -109,7 +109,8 @@ export function Navbar({ className, showSearch = true }: NavbarProps) {
               FAQ
             </Link>
             <Link
-              href="/pricing"
+              // href="/pricing"
+               href="/"
               className="text-white hover:text-yellow-500 font-medium px-4 py-2 transition-colors"
             >
               Pricing
