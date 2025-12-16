@@ -126,3 +126,5 @@ export interface WriterSettings {
   viewMode: ViewMode
   autoSave: boolean
 }
+
+export type PurchaseType = 'pdf' | 'print' | 'bundle';

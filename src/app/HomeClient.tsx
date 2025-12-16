@@ -60,7 +60,7 @@ export default function HomeClient() {
     }
   };
   return (
-    <div className="min-h-screen ">
+    <div className="min-h-screen bg-black">
       <Navbar />
       <main>
         <HeroSection onSignIn={() => setShowSignIn(true)} />

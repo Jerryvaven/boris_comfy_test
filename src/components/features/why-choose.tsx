@@ -30,7 +30,7 @@ export function WhyChoose() {
   const titleLetters = titleText.split("")
 
   return (
-    <section className="py-20 bg-[#181818]">
+    <section className="py-20 bg-black">
       <div className="max-w-6xl mx-auto px-4">
         <motion.div
           className="text-4xl md:text-5xl font-extrabold text-center mb-16 text-yellow-400 tracking-wide uppercase flex justify-center items-center flex-wrap"
@@ -98,7 +98,7 @@ export function WhyChoose() {
                   scale: 1.05,
                   transition: { duration: 0.2 },
                 }}
-                className="flex flex-col items-center text-center p-6 rounded-lg bg-[#1a1a1a] hover:bg-[#202020] transition-colors duration-300 cursor-pointer"
+                className="flex flex-col items-center text-center p-6 rounded-lg bg-black/70 border border-yellow-500/20 hover:bg-black/90 hover:border-yellow-500/30 transition-all duration-300 cursor-pointer"
               >
                 <motion.div
                   whileHover={{ rotate: 360, scale: 1.2 }}
@@ -108,7 +108,7 @@ export function WhyChoose() {
                   <Icon className="w-14 h-14 text-yellow-400" strokeWidth={2.5} />
                 </motion.div>
                 <div className="font-extrabold text-lg uppercase text-yellow-400 mb-1 tracking-wide">{feature.title}</div>
-                <div className="text-gray-300 text-base font-normal">{feature.description}</div>
+                <div className="text-gray-200 text-base font-normal">{feature.description}</div>
               </motion.div>
             )
           })}

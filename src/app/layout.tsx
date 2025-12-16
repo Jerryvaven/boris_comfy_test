@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { CartProvider } from "@/contexts/cart-context";
+import { FloatingCartButton } from "@/components/ui/floating-cart-button";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${inter.className} bg-gray-950 text-white antialiased`}>
-        {children}
+        <CartProvider>
+          {children}
+          <FloatingCartButton />
+        </CartProvider>
       </body>
     </html>
   );

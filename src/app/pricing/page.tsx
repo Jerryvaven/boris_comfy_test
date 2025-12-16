@@ -1,191 +1,306 @@
-import { Navbar } from '@/components/layout/navbar'
-import { Footer } from '@/components/layout/footer'
-import { Button } from '@/components/ui/button'
-import { Check } from 'lucide-react'
+"use client";
 
-const plans = [
-  {
-    name: "Free",
-    price: "$0",
-    period: "forever",
-    description: "Perfect for trying out comic creation",
-    features: [
-      "100 monthly credits",
-      "8 art styles",
-      "Basic character creation",
-      "PDF export",
-      "Community access"
-    ],
-    cta: "Get Started",
-    popular: false
-  },
-  {
-    name: "Reader",
-    price: "$9.99",
-    period: "per month",
-    description: "For comic enthusiasts and casual creators",
-    features: [
-      "Unlimited reading access",
-      "Download for offline",
-      "Early access to new comics",
-      "Ad-free experience",
-      "Premium support"
-    ],
-    cta: "Subscribe",
-    popular: false
-  },
-  {
-    name: "Reader Plus",
-    price: "$14.99",
-    period: "per month",
-    description: "Enhanced reading with creation benefits",
-    features: [
-      "Everything in Reader",
-      "Print-ready PDFs",
-      "Exclusive comic variants",
-      "Behind-the-scenes content",
-      "Creator interviews"
-    ],
-    cta: "Subscribe",
-    popular: true
-  },
-  {
-    name: "Pro Creator",
-    price: "$29.99",
-    period: "per month",
-    description: "For serious comic creators and professionals",
-    features: [
-      "Unlimited credits",
-      "All 18 art styles",
-      "Advanced character editor",
-      "Collaboration tools",
-      "Priority processing",
-      "Commercial licensing",
-      "Analytics dashboard"
-    ],
-    cta: "Go Pro",
-    popular: false
-  }
-]
+import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
+import { Button } from "@/components/ui/button";
+import { Check } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  PRICING_PLANS,
+  ALL_PLANS_FEATURES,
+  CREDIT_PACKAGES,
+} from "@/constants/pricing";
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen bg-gray-950">
+    <div className="min-h-screen bg-black">
       <Navbar />
       <main className="py-16">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Choose Your Plan
-            </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Start creating amazing comics today. Upgrade anytime as your needs grow.
-            </p>
-          </div>
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.h1
+              className="text-4xl md:text-5xl font-bold text-white mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              Empower Your Creative Journey
+            </motion.h1>
+            <motion.p
+              className="text-xl text-gray-200 max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              Transform your scripts into stunning visual narratives. Choose the
+              plan that fits your creative ambitions and join our community of
+              storytellers.
+            </motion.p>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {plans.map((plan, index) => (
-              <div
+          <div className="grid md:grid-cols-3 gap-6 mb-16">
+            {PRICING_PLANS.map((plan, index) => (
+              <motion.div
                 key={index}
-                className={`relative bg-gray-900 rounded-xl p-6 border ${
-                  plan.popular 
-                    ? 'border-yellow-500 ring-2 ring-yellow-500/20' 
-                    : 'border-gray-800'
+                className={`relative bg-black/70 rounded-xl p-6 border flex flex-col h-full ${
+                  plan.popular
+                    ? "border-yellow-500 ring-2 ring-yellow-500/20"
+                    : "border-yellow-500/20"
                 }`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{
+                  y: -8,
+                  scale: 1.02,
+                  borderColor: plan.popular
+                    ? "rgba(234, 179, 8, 0.6)"
+                    : "rgba(234, 179, 8, 0.4)",
+                  boxShadow: plan.popular
+                    ? "0 20px 40px rgba(234, 179, 8, 0.2)"
+                    : "0 20px 40px rgba(234, 179, 8, 0.1)",
+                }}
               >
                 {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="bg-yellow-500 text-gray-900 px-3 py-1 rounded-full text-sm font-semibold">
-                      Most Popular
+                  <motion.div
+                    className="absolute -top-3 left-1/2 -translate-x-1/2"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.3, delay: 0.2 }}
+                  >
+                    <span className="bg-yellow-500 text-black px-3 py-1 rounded-full text-sm font-semibold">
+                      MOST POPULAR
                     </span>
-                  </div>
+                  </motion.div>
                 )}
-                
+
                 <div className="text-center mb-6">
-                  <h3 className="text-xl font-bold text-white mb-2">
+                  <motion.h3
+                    className="text-xl font-bold text-white mb-2"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.2 }}
+                  >
                     {plan.name}
-                  </h3>
+                  </motion.h3>
                   <div className="mb-2">
-                    <span className="text-3xl font-bold text-white">
+                    <motion.span
+                      className="text-3xl font-bold text-white"
+                      whileHover={{ scale: 1.1, color: "#eab308" }}
+                      transition={{ duration: 0.2 }}
+                    >
                       {plan.price}
-                    </span>
-                    <span className="text-gray-400 ml-1">
-                      {plan.period}
-                    </span>
+                    </motion.span>
+                    <span className="text-gray-300 ml-1">{plan.period}</span>
                   </div>
-                  <p className="text-gray-400 text-sm">
-                    {plan.description}
-                  </p>
+                  <p className="text-gray-300 text-sm">{plan.description}</p>
                 </div>
 
-                <ul className="space-y-3 mb-6">
-                  {plan.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center gap-2">
-                      <Check className="h-4 w-4 text-yellow-500 flex-shrink-0" />
-                      <span className="text-gray-300 text-sm">
-                        {feature}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="flex-grow">
+                  <ul className="space-y-3 mb-6">
+                    {plan.features.map((feature, featureIndex) => (
+                      <motion.li
+                        key={featureIndex}
+                        className="flex items-center gap-2"
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{
+                          duration: 0.3,
+                          delay: index * 0.1 + featureIndex * 0.05,
+                        }}
+                        whileHover={{ x: 5 }}
+                      >
+                        <Check className="h-4 w-4 text-yellow-500 flex-shrink-0" />
+                        <span className="text-gray-200 text-sm">{feature}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
 
-                <Button
-                  variant={plan.popular ? "primary" : "outline"}
-                  className="w-full"
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  {plan.cta}
-                </Button>
-              </div>
+                  <Button
+                    variant={plan.popular ? "primary" : "outline"}
+                    className={`w-full ${
+                      plan.popular
+                        ? "bg-yellow-500 hover:bg-yellow-600 text-black"
+                        : "border-yellow-500/50 text-yellow-500 hover:bg-yellow-500 hover:text-black"
+                    }`}
+                  >
+                    {plan.cta}
+                  </Button>
+                </motion.div>
+              </motion.div>
             ))}
           </div>
 
-          {/* FAQ Section */}
-          <div className="bg-gray-900 rounded-xl p-8 border border-gray-800">
-            <h2 className="text-2xl font-bold text-white mb-6 text-center">
-              Pricing FAQ
-            </h2>
-            
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  Can I change plans anytime?
-                </h3>
-                <p className="text-gray-300 text-sm">
-                  Yes! You can upgrade or downgrade your plan at any time. Changes take effect immediately.
-                </p>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  What happens to my comics if I downgrade?
-                </h3>
-                <p className="text-gray-300 text-sm">
-                  Your comics remain yours forever. You'll just lose access to premium features and styles.
-                </p>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  Do you offer refunds?
-                </h3>
-                <p className="text-gray-300 text-sm">
-                  We offer a 30-day money-back guarantee for all paid plans. No questions asked.
-                </p>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  Is there a student discount?
-                </h3>
-                <p className="text-gray-300 text-sm">
-                  Yes! Students get 50% off Pro Creator plans with valid student ID verification.
-                </p>
-              </div>
+          {/* All Plans Include Section */}
+          <motion.div
+            className="bg-black/50 rounded-xl p-8 mb-16 border border-yellow-500/20"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
+            <motion.h2
+              className="text-2xl font-bold text-white mb-8 text-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+            >
+              All Plans Include
+            </motion.h2>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {ALL_PLANS_FEATURES.map((item, index) => (
+                <motion.div
+                  key={index}
+                  className="text-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
+                  whileHover={{ y: -5, scale: 1.05 }}
+                >
+                  <motion.div
+                    className="bg-yellow-500/10 p-3 rounded-xl w-fit mx-auto mb-3"
+                    whileHover={{
+                      backgroundColor: "rgba(234, 179, 8, 0.2)",
+                      scale: 1.1,
+                      rotate: 5,
+                    }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Check className="h-6 w-6 text-yellow-500" />
+                  </motion.div>
+                  <h3 className="text-lg font-semibold text-white mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-300 text-sm">{item.desc}</p>
+                </motion.div>
+              ))}
             </div>
-          </div>
+          </motion.div>
+
+          {/* Need More Credits Section */}
+          <motion.div
+            className="bg-black/50 rounded-xl p-8 mb-16 border border-yellow-500/20"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
+            <motion.h2
+              className="text-2xl font-bold text-white mb-4 text-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
+            >
+              Need More Credits?
+            </motion.h2>
+            <motion.p
+              className="text-gray-300 text-center mb-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 1.0 }}
+            >
+              Purchase additional illustration credits anytime
+            </motion.p>
+
+            <div className="grid md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+              {CREDIT_PACKAGES.map((credit, index) => (
+                <motion.div
+                  key={index}
+                  className={`bg-black/70 rounded-xl p-6 border text-center cursor-pointer ${
+                    credit.bestValue
+                      ? "border-yellow-500/30 ring-1 ring-yellow-500/20"
+                      : "border-yellow-500/20"
+                  }`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 1.1 + index * 0.1 }}
+                  whileHover={{
+                    y: -5,
+                    scale: 1.05,
+                    borderColor: "rgba(234, 179, 8, 0.5)",
+                    boxShadow: "0 10px 30px rgba(234, 179, 8, 0.1)",
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <motion.div
+                    className="text-2xl font-bold text-white mb-2"
+                    whileHover={{ scale: 1.1, color: "#eab308" }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {credit.credits}
+                  </motion.div>
+                  <div className="text-gray-300 text-sm mb-3">Credits</div>
+                  <div className="text-lg font-semibold text-white">
+                    {credit.price}
+                  </div>
+                  {credit.bestValue && (
+                    <motion.div
+                      className="text-xs text-yellow-500 mt-2"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.3, delay: 1.5 }}
+                    >
+                      BEST VALUE
+                    </motion.div>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* FAQ Section */}
+          <motion.div
+            className="bg-black/70 rounded-xl p-8 border border-yellow-500/30 text-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.2 }}
+            whileHover={{
+              borderColor: "rgba(234, 179, 8, 0.5)",
+              boxShadow: "0 10px 30px rgba(234, 179, 8, 0.1)",
+            }}
+          >
+            <motion.h2
+              className="text-2xl font-bold text-white mb-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 1.3 }}
+            >
+              Have questions about our pricing?
+            </motion.h2>
+            <motion.p
+              className="text-gray-300 mb-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 1.4 }}
+            >
+              Our team is here to help you choose the right plan for your
+              creative journey.
+            </motion.p>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Button
+                variant="outline"
+                className="bg-yellow-500 text-black hover:bg-yellow-600 border-yellow-500"
+              >
+                View FAQ
+              </Button>
+            </motion.div>
+          </motion.div>
         </div>
       </main>
       <Footer />
     </div>
-  )
+  );
 }

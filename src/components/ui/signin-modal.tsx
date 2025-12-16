@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { createClient } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
+import { Modal, ModalContent, ModalHeader, ModalTitle, ModalDescription } from "./modal";
 
 interface SignInModalProps {
   open: boolean;
@@ -64,33 +65,40 @@ export default function SignInModal({ open, onClose, onSwitchToSignUp }: SignInM
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/80 z-50 p-4">
-      <div className="bg-card-bg rounded-xl shadow-lg p-8 w-full max-w-sm border border-primary-yellow relative max-h-[90vh] overflow-y-auto scrollbar-hide">
-        <button onClick={onClose} className="absolute top-4 right-4 text-text-muted hover:text-text-white text-xl z-10" aria-label="Close">&times;</button>
-        <h2 className="text-3xl font-bold text-primary-yellow text-center mb-2">Sign In</h2>
-        <p className="text-text-muted text-center mb-6">Welcome back! Sign in to continue creating.</p>
-        <form onSubmit={handleSubmit}>
-          <label className="block mb-2 text-text-muted font-semibold" htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            className="w-full px-4 py-2 mb-4 rounded border border-primary-yellow bg-transparent text-text-white focus:outline-none focus:ring-2 focus:ring-primary-yellow"
-            placeholder="Enter your email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-          />
-          <label className="block mb-2 text-text-muted font-semibold" htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            className="w-full px-4 py-2 mb-2 rounded border border-border-color bg-transparent text-text-white focus:outline-none focus:ring-2 focus:ring-primary-yellow"
-            placeholder="Enter your password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            required
-          />
-          <div className="flex items-center justify-between mb-4">
+    <Modal open={open} onOpenChange={(isOpen) => { if (!isOpen) onClose(); }}>
+      <ModalContent className="bg-card-bg border-primary-yellow text-text-white max-w-sm max-h-[90vh] overflow-y-auto scrollbar-hide">
+        <ModalHeader>
+          <ModalTitle className="text-3xl font-bold text-primary-yellow text-center">Sign In</ModalTitle>
+          <ModalDescription className="text-text-muted text-center">
+            Welcome back! Sign in to continue creating.
+          </ModalDescription>
+        </ModalHeader>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block mb-2 text-text-muted font-semibold" htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              className="w-full px-4 py-2 rounded border border-primary-yellow bg-transparent text-text-white focus:outline-none focus:ring-2 focus:ring-primary-yellow"
+              placeholder="Enter your email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label className="block mb-2 text-text-muted font-semibold" htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              className="w-full px-4 py-2 rounded border border-border-color bg-transparent text-text-white focus:outline-none focus:ring-2 focus:ring-primary-yellow"
+              placeholder="Enter your password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div className="flex items-center justify-between">
             <label className="flex items-center text-text-muted text-sm">
               <input
                 type="checkbox"
@@ -104,12 +112,12 @@ export default function SignInModal({ open, onClose, onSwitchToSignUp }: SignInM
           </div>
           <button
             type="submit"
-            className="w-full bg-primary-yellow hover:bg-secondary-orange text-black font-bold py-2 rounded mb-4 transition-colors"
+            className="w-full bg-primary-yellow hover:bg-secondary-orange text-black font-bold py-2 rounded transition-colors"
           >
             Sign In
           </button>
         </form>
-        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+        {error && <p className="text-red-500 text-center">{error}</p>}
         <div className="flex items-center my-4">
           <hr className="flex-grow border-border-color" />
           <span className="mx-2 text-text-muted text-sm">or</span>
@@ -117,16 +125,16 @@ export default function SignInModal({ open, onClose, onSwitchToSignUp }: SignInM
         </div>
         <button 
           onClick={handleGoogleSignIn}
-          className="w-full flex items-center justify-center gap-2 bg-gray-100 text-black font-semibold py-2 rounded mb-4 border border-gray-300 hover:bg-gray-200 transition-colors"
+          className="w-full flex items-center justify-center gap-2 bg-gray-100 text-black font-semibold py-2 rounded border border-gray-300 hover:bg-gray-200 transition-colors"
         >
           <span className="text-lg">G</span>
           Continue with Google
         </button>
-        <p className="text-center text-text-muted text-sm">
+        <p className="text-center text-text-muted text-sm mt-4">
           Don't have an account?{' '}
           <span onClick={handleSwitchToSignUp} className="text-primary-yellow hover:underline font-semibold cursor-pointer">Sign Up</span>
         </p>
-      </div>
-    </div>
+      </ModalContent>
+    </Modal>
   );
 }

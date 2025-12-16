@@ -212,7 +212,7 @@ function MarqueeRow({ comics, direction = 'left' }: { comics: typeof showcaseCom
 
 export function CommunityShowcase() {
   return (
-    <section className="py-16 bg-gray-950">
+    <section className="py-16 bg-black">
       <div className=" mx-auto px-2">
         <motion.h2 
           className="text-3xl md:text-4xl font-bold text-center text-white mb-12"

@@ -71,7 +71,7 @@ export function Navbar({ className, showSearch = true }: NavbarProps) {
   return (
     <nav
       className={cn(
-        "bg-gray-950 border-b-2 border-yellow-500/60 sticky top-0 z-50 h-[90px] px-2 py-4",
+        "bg-black border-b-2 border-yellow-500/60 sticky top-0 z-50 h-[90px] px-2 py-4",
         className
       )}
     >
@@ -109,8 +109,7 @@ export function Navbar({ className, showSearch = true }: NavbarProps) {
               FAQ
             </Link>
             <Link
-              // href="/pricing"
-               href="/"
+              href="/pricing"
               className="text-white hover:text-yellow-500 font-medium px-4 py-2 transition-colors"
             >
               Pricing
@@ -141,7 +140,7 @@ export function Navbar({ className, showSearch = true }: NavbarProps) {
             <select
               value={selectedGenre}
               onChange={(e) => setSelectedGenre(e.target.value)}
-              className="bg-gray-900 border border-gray-600 rounded-md px-3 py-2 text-sm text-white focus:border-yellow-500 focus:outline-none"
+              className="bg-black border border-yellow-500/30 rounded-md px-3 py-2 text-sm text-white focus:border-yellow-500 focus:outline-none"
             >
               {genres.map((genre) => (
                 <option key={genre.value} value={genre.value}>
