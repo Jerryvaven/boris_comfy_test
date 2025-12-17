@@ -18,7 +18,7 @@ export default function ShopPage() {
       number: i + 1,
       author: cat.author,
       price: `4.${8 - i}`,
-      summary: cat.summaries[i]
+      summary: cat.summaries[i],
     };
     contextAddToCart(item, key);
   };
@@ -60,7 +60,7 @@ export default function ShopPage() {
                   >
                     {cat.images.map((img, i) => {
                       const cardKey = `${cat.title}-${i}`;
-                      const cartItem = cart.find(c => c.key === cardKey);
+                      const cartItem = cart.find((c) => c.key === cardKey);
                       return (
                         <ComicCard
                           key={img}
@@ -73,7 +73,9 @@ export default function ShopPage() {
                           cartKey={cardKey}
                           cartItem={cartItem}
                           onAddToCart={() => addToCart(cat, i)}
-                          onUpdateQuantity={(delta) => updateQuantity(cardKey, delta)}
+                          onUpdateQuantity={(delta) =>
+                            updateQuantity(cardKey, delta)
+                          }
                           showOverlay={expandedCard === cardKey}
                           onToggleOverlay={() =>
                             setExpandedCard(

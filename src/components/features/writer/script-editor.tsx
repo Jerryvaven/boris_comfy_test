@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import React, { useState, useRef, useEffect } from 'react'
-import { Plus, FileText, Volume2 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Panel, Character } from '@/types'
-import { cn } from '@/lib/utils'
+import React, { useState, useRef, useEffect } from "react";
+import { Plus, FileText, Volume2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Panel, Character } from "@/types";
+import { cn } from "@/lib/utils";
 
 interface ScriptEditorProps {
-  panels: Panel[]
-  characters: Character[]
-  currentPage: number
-  fontSize: string
-  onPanelUpdate: (panelId: string, updates: Partial<Panel>) => void
-  onAddPanel: () => void
-  onAddPage: () => void
-  onAddNarration: (panelId: string) => void
+  panels: Panel[];
+  characters: Character[];
+  currentPage: number;
+  fontSize: string;
+  onPanelUpdate: (panelId: string, updates: Partial<Panel>) => void;
+  onAddPanel: () => void;
+  onAddPage: () => void;
+  onAddNarration: (panelId: string) => void;
 }
 
 export function ScriptEditor({
@@ -25,53 +25,56 @@ export function ScriptEditor({
   onPanelUpdate,
   onAddPanel,
   onAddPage,
-  onAddNarration
+  onAddNarration,
 }: ScriptEditorProps) {
-  const [editingPanel, setEditingPanel] = useState<string | null>(null)
-  const [draggedPanel, setDraggedPanel] = useState<string | null>(null)
+  const [editingPanel, setEditingPanel] = useState<string | null>(null);
+  const [draggedPanel, setDraggedPanel] = useState<string | null>(null);
 
-  const handlePanelDescriptionChange = (panelId: string, description: string) => {
-    onPanelUpdate(panelId, { description })
-  }
+  const handlePanelDescriptionChange = (
+    panelId: string,
+    description: string
+  ) => {
+    onPanelUpdate(panelId, { description });
+  };
 
   const handleCharacterDialogueChange = (
-    panelId: string, 
-    characterIndex: number, 
-    field: 'action' | 'dialogue' | 'emotion',
+    panelId: string,
+    characterIndex: number,
+    field: "action" | "dialogue" | "emotion",
     value: string
   ) => {
-    const panel = panels.find(p => p.id === panelId)
-    if (!panel) return
+    const panel = panels.find((p) => p.id === panelId);
+    if (!panel) return;
 
-    const updatedCharacters = [...panel.characters]
+    const updatedCharacters = [...panel.characters];
     updatedCharacters[characterIndex] = {
       ...updatedCharacters[characterIndex],
-      [field]: value
-    }
-    
-    onPanelUpdate(panelId, { characters: updatedCharacters })
-  }
+      [field]: value,
+    };
+
+    onPanelUpdate(panelId, { characters: updatedCharacters });
+  };
 
   const addCharacterToPanel = (panelId: string, character: Character) => {
-    const panel = panels.find(p => p.id === panelId)
-    if (!panel) return
+    const panel = panels.find((p) => p.id === panelId);
+    if (!panel) return;
 
     const newCharacterDialogue = {
       characterId: character.id,
       characterName: character.name,
-      action: '',
-      dialogue: ''
-    }
+      action: "",
+      dialogue: "",
+    };
 
     onPanelUpdate(panelId, {
-      characters: [...panel.characters, newCharacterDialogue]
-    })
-  }
+      characters: [...panel.characters, newCharacterDialogue],
+    });
+  };
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-gray-950">
+    <div className="flex-1 flex flex-col overflow-hidden bg-vscode-editor">
       {/* Page Header */}
-      <div className="sticky top-0 bg-gray-950 border-b-2 border-gray-700 p-4 z-10">
+      <div className="sticky top-0 bg-vscode-sidebar border-b-2 border-vscode p-4 ">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Button
@@ -93,7 +96,7 @@ export function ScriptEditor({
               Page
             </Button>
           </div>
-          
+
           <h2 className="text-yellow-500 font-semibold text-lg">
             PAGE {currentPage} [PANELS: {panels.length}]
           </h2>
@@ -101,8 +104,8 @@ export function ScriptEditor({
       </div>
 
       {/* Script Content */}
-      <div 
-        className="flex-1 overflow-y-auto p-8 max-w-5xl mx-auto w-full"
+      <div
+        className="flex-1 overflow-y-auto p-8 w-full"
         style={{ fontSize }}
       >
         <div className="space-y-6">
@@ -125,12 +128,14 @@ export function ScriptEditor({
                 >
                   PANEL {panel.number}
                 </div>
-                
+
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
                     <textarea
                       value={panel.description}
-                      onChange={(e) => handlePanelDescriptionChange(panel.id, e.target.value)}
+                      onChange={(e) =>
+                        handlePanelDescriptionChange(panel.id, e.target.value)
+                      }
                       onFocus={() => setEditingPanel(panel.id)}
                       onBlur={() => setEditingPanel(null)}
                       className="flex-1 bg-transparent border-none outline-none text-white resize-none leading-relaxed"
@@ -166,7 +171,14 @@ export function ScriptEditor({
                       <div className="text-center">
                         <textarea
                           value={charDialogue.action}
-                          onChange={(e) => handleCharacterDialogueChange(panel.id, charIndex, 'action', e.target.value)}
+                          onChange={(e) =>
+                            handleCharacterDialogueChange(
+                              panel.id,
+                              charIndex,
+                              "action",
+                              e.target.value
+                            )
+                          }
                           className="w-4/5 mx-auto bg-transparent border-none outline-none text-gray-400 italic text-center resize-none"
                           placeholder="(Character action or emotion)"
                           rows={1}
@@ -179,7 +191,14 @@ export function ScriptEditor({
                       <div className="text-center">
                         <textarea
                           value={charDialogue.dialogue}
-                          onChange={(e) => handleCharacterDialogueChange(panel.id, charIndex, 'dialogue', e.target.value)}
+                          onChange={(e) =>
+                            handleCharacterDialogueChange(
+                              panel.id,
+                              charIndex,
+                              "dialogue",
+                              e.target.value
+                            )
+                          }
                           className="w-3/5 mx-auto bg-transparent border-none outline-none text-white font-bold text-center resize-none"
                           placeholder="Character dialogue..."
                           rows={1}
@@ -193,16 +212,20 @@ export function ScriptEditor({
                 <div className="flex justify-center">
                   <select
                     onChange={(e) => {
-                      const character = characters.find(c => c.id === e.target.value)
+                      const character = characters.find(
+                        (c) => c.id === e.target.value
+                      );
                       if (character) {
-                        addCharacterToPanel(panel.id, character)
-                        e.target.value = ''
+                        addCharacterToPanel(panel.id, character);
+                        e.target.value = "";
                       }
                     }}
-                    className="bg-gray-800 border border-gray-600 rounded px-3 py-1 text-sm text-white"
+                    className="bg-vscode-active border border-vscode rounded px-3 py-1 text-sm text-white"
                     defaultValue=""
                   >
-                    <option value="" disabled>Add Character...</option>
+                    <option value="" disabled>
+                      Add Character...
+                    </option>
                     {characters.map((character) => (
                       <option key={character.id} value={character.id}>
                         {character.name}
@@ -217,7 +240,9 @@ export function ScriptEditor({
                 <div className="ml-16 mt-4">
                   <textarea
                     value={panel.narration}
-                    onChange={(e) => onPanelUpdate(panel.id, { narration: e.target.value })}
+                    onChange={(e) =>
+                      onPanelUpdate(panel.id, { narration: e.target.value })
+                    }
                     className="w-1/2 mx-auto bg-transparent border-none outline-none text-gray-300 italic text-left resize-none"
                     placeholder="Narration text..."
                     rows={2}
@@ -229,5 +254,5 @@ export function ScriptEditor({
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,12 +1,12 @@
 "use client";
 
-import { 
-  Modal, 
-  ModalContent, 
-  ModalHeader, 
-  ModalTitle, 
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalTitle,
   ModalDescription,
-  ModalFooter 
+  ModalFooter,
 } from "@/components/ui/modal";
 import { CheckCircle, Download, X } from "lucide-react";
 
@@ -17,11 +17,11 @@ interface DownloadSuccessModalProps {
   fileSize?: string;
 }
 
-export function DownloadSuccessModal({ 
-  isOpen, 
-  onClose, 
-  fileName, 
-  fileSize = "2.4 MB" 
+export function DownloadSuccessModal({
+  isOpen,
+  onClose,
+  fileName,
+  fileSize = "2.4 MB",
 }: DownloadSuccessModalProps) {
   return (
     <Modal open={isOpen} onOpenChange={onClose}>
@@ -49,9 +49,7 @@ export function DownloadSuccessModal({
                 <p className="text-sm font-medium text-white truncate">
                   {fileName}
                 </p>
-                <p className="text-xs text-gray-400">
-                  CBR Format • {fileSize}
-                </p>
+                <p className="text-xs text-gray-400">CBR Format • {fileSize}</p>
               </div>
             </div>
           </div>

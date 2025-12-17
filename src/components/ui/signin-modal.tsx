@@ -2,7 +2,13 @@
 import React, { useState } from "react";
 import { createClient } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
-import { Modal, ModalContent, ModalHeader, ModalTitle, ModalDescription } from "./modal";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalTitle,
+  ModalDescription,
+} from "./modal";
 
 interface SignInModalProps {
   open: boolean;
@@ -10,7 +16,11 @@ interface SignInModalProps {
   onSwitchToSignUp?: () => void;
 }
 
-export default function SignInModal({ open, onClose, onSwitchToSignUp }: SignInModalProps) {
+export default function SignInModal({
+  open,
+  onClose,
+  onSwitchToSignUp,
+}: SignInModalProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
@@ -25,9 +35,9 @@ export default function SignInModal({ open, onClose, onSwitchToSignUp }: SignInM
     e.preventDefault();
     setError("");
 
-    const response = await fetch('/api/auth/signin', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const response = await fetch("/api/auth/signin", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     });
 
@@ -38,14 +48,14 @@ export default function SignInModal({ open, onClose, onSwitchToSignUp }: SignInM
     } else {
       onClose();
       // Redirect to writer page
-      router.push('/writer');
+      router.push("/writer");
     }
   };
 
   const handleGoogleSignIn = async () => {
     setError("");
     const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
+      provider: "google",
       options: {
         redirectTo: `${window.location.origin}/api/auth/callback?next=/writer`,
       },
@@ -60,41 +70,58 @@ export default function SignInModal({ open, onClose, onSwitchToSignUp }: SignInM
     if (onSwitchToSignUp) {
       onSwitchToSignUp();
     } else {
-      router.push('/');
+      router.push("/");
     }
   };
 
   return (
-    <Modal open={open} onOpenChange={(isOpen) => { if (!isOpen) onClose(); }}>
+    <Modal
+      open={open}
+      onOpenChange={(isOpen) => {
+        if (!isOpen) onClose();
+      }}
+    >
       <ModalContent className="bg-card-bg border-primary-yellow text-text-white max-w-sm max-h-[90vh] overflow-y-auto scrollbar-hide">
         <ModalHeader>
-          <ModalTitle className="text-3xl font-bold text-primary-yellow text-center">Sign In</ModalTitle>
+          <ModalTitle className="text-3xl font-bold text-primary-yellow text-center">
+            Sign In
+          </ModalTitle>
           <ModalDescription className="text-text-muted text-center">
             Welcome back! Sign in to continue creating.
           </ModalDescription>
         </ModalHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block mb-2 text-text-muted font-semibold" htmlFor="email">Email</label>
+            <label
+              className="block mb-2 text-text-muted font-semibold"
+              htmlFor="email"
+            >
+              Email
+            </label>
             <input
               id="email"
               type="email"
               className="w-full px-4 py-2 rounded border border-primary-yellow bg-transparent text-text-white focus:outline-none focus:ring-2 focus:ring-primary-yellow"
               placeholder="Enter your email"
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
           <div>
-            <label className="block mb-2 text-text-muted font-semibold" htmlFor="password">Password</label>
+            <label
+              className="block mb-2 text-text-muted font-semibold"
+              htmlFor="password"
+            >
+              Password
+            </label>
             <input
               id="password"
               type="password"
               className="w-full px-4 py-2 rounded border border-border-color bg-transparent text-text-white focus:outline-none focus:ring-2 focus:ring-primary-yellow"
               placeholder="Enter your password"
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
@@ -104,11 +131,13 @@ export default function SignInModal({ open, onClose, onSwitchToSignUp }: SignInM
                 type="checkbox"
                 className="mr-2 accent-primary-yellow"
                 checked={remember}
-                onChange={e => setRemember(e.target.checked)}
+                onChange={(e) => setRemember(e.target.checked)}
               />
               Remember me
             </label>
-            <a href="#" className="text-primary-yellow text-sm hover:underline">Forgot password?</a>
+            <a href="#" className="text-primary-yellow text-sm hover:underline">
+              Forgot password?
+            </a>
           </div>
           <button
             type="submit"
@@ -123,7 +152,7 @@ export default function SignInModal({ open, onClose, onSwitchToSignUp }: SignInM
           <span className="mx-2 text-text-muted text-sm">or</span>
           <hr className="flex-grow border-border-color" />
         </div>
-        <button 
+        <button
           onClick={handleGoogleSignIn}
           className="w-full flex items-center justify-center gap-2 bg-gray-100 text-black font-semibold py-2 rounded border border-gray-300 hover:bg-gray-200 transition-colors"
         >
@@ -131,8 +160,13 @@ export default function SignInModal({ open, onClose, onSwitchToSignUp }: SignInM
           Continue with Google
         </button>
         <p className="text-center text-text-muted text-sm mt-4">
-          Don't have an account?{' '}
-          <span onClick={handleSwitchToSignUp} className="text-primary-yellow hover:underline font-semibold cursor-pointer">Sign Up</span>
+          Don't have an account?{" "}
+          <span
+            onClick={handleSwitchToSignUp}
+            className="text-primary-yellow hover:underline font-semibold cursor-pointer"
+          >
+            Sign Up
+          </span>
         </p>
       </ModalContent>
     </Modal>

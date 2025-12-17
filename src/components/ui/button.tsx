@@ -1,6 +1,6 @@
-import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
@@ -9,12 +9,15 @@ const buttonVariants = cva(
       variant: {
         default: "bg-yellow-500 text-gray-900 shadow hover:bg-yellow-600",
         destructive: "bg-red-500 text-white shadow-sm hover:bg-red-600",
-        outline: "border border-gray-600 bg-transparent shadow-sm hover:bg-gray-800 hover:text-white",
+        outline:
+          "border border-gray-600 bg-transparent shadow-sm hover:bg-gray-800 hover:text-white",
         secondary: "bg-gray-800 text-white shadow-sm hover:bg-gray-700",
         ghost: "hover:bg-gray-800 hover:text-white",
         link: "text-yellow-500 underline-offset-4 hover:underline",
-        primary: "bg-yellow-500 text-gray-900 shadow hover:bg-orange-500 font-semibold",
-        toolbar: "bg-transparent border border-gray-600 text-white hover:bg-gray-800 hover:border-yellow-500",
+        primary:
+          "bg-yellow-500 text-gray-900 shadow hover:bg-orange-500 font-semibold",
+        toolbar:
+          "bg-transparent border border-gray-600 text-white hover:bg-gray-800 hover:border-yellow-500",
       },
       size: {
         default: "h-9 px-4 py-2",
@@ -28,12 +31,12 @@ const buttonVariants = cva(
       size: "default",
     },
   }
-)
+);
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
-  asChild?: boolean
+  asChild?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -44,9 +47,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       />
-    )
+    );
   }
-)
-Button.displayName = "Button"
+);
+Button.displayName = "Button";
 
-export { Button, buttonVariants }
+export { Button, buttonVariants };

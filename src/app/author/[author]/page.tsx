@@ -76,7 +76,7 @@ export default function AuthorPage() {
   // Sort comics based on selected option
   const sortedComics = useMemo(() => {
     if (!authorCategory) return [];
-    
+
     const comicsWithData = authorCategory.images.map((img, i) => ({
       image: img,
       index: i,
@@ -231,7 +231,7 @@ export default function AuthorPage() {
 
             {/* Dropdown Menu (Most Popular) */}
             <div className="relative">
-              <select 
+              <select
                 value={sortOption}
                 onChange={(e) => setSortOption(e.target.value)}
                 className="appearance-none bg-black/70 border border-yellow-500/30 text-white py-2 pl-4 pr-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 cursor-pointer"

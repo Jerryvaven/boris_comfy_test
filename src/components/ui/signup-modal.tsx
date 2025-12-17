@@ -2,7 +2,13 @@
 import React, { useState } from "react";
 import { createClient } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
-import { Modal, ModalContent, ModalHeader, ModalTitle, ModalDescription } from "./modal";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalTitle,
+  ModalDescription,
+} from "./modal";
 
 interface SignUpModalProps {
   open: boolean;
@@ -10,7 +16,11 @@ interface SignUpModalProps {
   onSwitchToSignIn?: () => void;
 }
 
-export default function SignUpModal({ open, onClose, onSwitchToSignIn }: SignUpModalProps) {
+export default function SignUpModal({
+  open,
+  onClose,
+  onSwitchToSignIn,
+}: SignUpModalProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,7 +35,12 @@ export default function SignUpModal({ open, onClose, onSwitchToSignIn }: SignUpM
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted with:", { name, email, password, confirmPassword });
+    console.log("Form submitted with:", {
+      name,
+      email,
+      password,
+      confirmPassword,
+    });
     setError("");
 
     if (password !== confirmPassword) {
@@ -35,9 +50,9 @@ export default function SignUpModal({ open, onClose, onSwitchToSignIn }: SignUpM
     }
 
     console.log("Attempting to sign up...");
-    const response = await fetch('/api/auth/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const response = await fetch("/api/auth/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password, name }),
     });
 
@@ -55,7 +70,7 @@ export default function SignUpModal({ open, onClose, onSwitchToSignIn }: SignUpM
   const handleGoogleSignIn = async () => {
     setError("");
     const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
+      provider: "google",
       options: {
         redirectTo: `${window.location.origin}/writer`,
       },
@@ -70,73 +85,110 @@ export default function SignUpModal({ open, onClose, onSwitchToSignIn }: SignUpM
     if (onSwitchToSignIn) {
       onSwitchToSignIn();
     } else {
-      router.push('/');
+      router.push("/");
     }
   };
 
   return (
-    <Modal open={open} onOpenChange={(isOpen) => { if (!isOpen) onClose(); }}>
+    <Modal
+      open={open}
+      onOpenChange={(isOpen) => {
+        if (!isOpen) onClose();
+      }}
+    >
       <ModalContent className="bg-card-bg border-primary-yellow text-text-white max-w-sm max-h-[90vh] overflow-y-auto scrollbar-hide">
         {showConfirmation ? (
           <ModalHeader>
-            <ModalTitle className="text-3xl font-bold text-primary-yellow text-center">Check Your Email</ModalTitle>
+            <ModalTitle className="text-3xl font-bold text-primary-yellow text-center">
+              Check Your Email
+            </ModalTitle>
             <ModalDescription className="text-text-muted text-center">
-              We've sent a confirmation link to your email. Please check your inbox and click the link to activate your account.
+              We've sent a confirmation link to your email. Please check your
+              inbox and click the link to activate your account.
             </ModalDescription>
-            <button onClick={onClose} className="w-full bg-primary-yellow hover:bg-secondary-orange text-black font-bold py-2 rounded transition-colors mt-4">Close</button>
+            <button
+              onClick={onClose}
+              className="w-full bg-primary-yellow hover:bg-secondary-orange text-black font-bold py-2 rounded transition-colors mt-4"
+            >
+              Close
+            </button>
           </ModalHeader>
         ) : (
           <>
             <ModalHeader>
-              <ModalTitle className="text-3xl font-bold text-primary-yellow text-center">Create Account</ModalTitle>
-              <ModalDescription className="text-text-muted text-center">Join Inktron and start creating comics!</ModalDescription>
+              <ModalTitle className="text-3xl font-bold text-primary-yellow text-center">
+                Create Account
+              </ModalTitle>
+              <ModalDescription className="text-text-muted text-center">
+                Join Inktron and start creating comics!
+              </ModalDescription>
             </ModalHeader>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block mb-2 text-text-muted font-semibold" htmlFor="name">Full Name</label>
+                <label
+                  className="block mb-2 text-text-muted font-semibold"
+                  htmlFor="name"
+                >
+                  Full Name
+                </label>
                 <input
                   id="name"
                   type="text"
                   className="w-full px-4 py-2 rounded border border-primary-yellow bg-transparent text-text-white focus:outline-none focus:ring-2 focus:ring-primary-yellow"
                   placeholder="Enter your name"
                   value={name}
-                  onChange={e => setName(e.target.value)}
+                  onChange={(e) => setName(e.target.value)}
                   required
                 />
               </div>
               <div>
-                <label className="block mb-2 text-text-muted font-semibold" htmlFor="email">Email</label>
+                <label
+                  className="block mb-2 text-text-muted font-semibold"
+                  htmlFor="email"
+                >
+                  Email
+                </label>
                 <input
                   id="email"
                   type="email"
                   className="w-full px-4 py-2 rounded border border-border-color bg-transparent text-text-white focus:outline-none focus:ring-2 focus:ring-primary-yellow"
                   placeholder="Enter your email"
                   value={email}
-                  onChange={e => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
               <div>
-                <label className="block mb-2 text-text-muted font-semibold" htmlFor="password">Password</label>
+                <label
+                  className="block mb-2 text-text-muted font-semibold"
+                  htmlFor="password"
+                >
+                  Password
+                </label>
                 <input
                   id="password"
                   type="password"
                   className="w-full px-4 py-2 rounded border border-border-color bg-transparent text-text-white focus:outline-none focus:ring-2 focus:ring-primary-yellow"
                   placeholder="Create a password"
                   value={password}
-                  onChange={e => setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
               </div>
               <div>
-                <label className="block mb-2 text-text-muted font-semibold" htmlFor="confirmPassword">Confirm Password</label>
+                <label
+                  className="block mb-2 text-text-muted font-semibold"
+                  htmlFor="confirmPassword"
+                >
+                  Confirm Password
+                </label>
                 <input
                   id="confirmPassword"
                   type="password"
                   className="w-full px-4 py-2 rounded border border-border-color bg-transparent text-text-white focus:outline-none focus:ring-2 focus:ring-primary-yellow"
                   placeholder="Confirm your password"
                   value={confirmPassword}
-                  onChange={e => setConfirmPassword(e.target.value)}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                 />
               </div>
@@ -153,7 +205,7 @@ export default function SignUpModal({ open, onClose, onSwitchToSignIn }: SignUpM
               <span className="mx-2 text-text-muted text-sm">or</span>
               <hr className="flex-grow border-border-color" />
             </div>
-            <button 
+            <button
               onClick={handleGoogleSignIn}
               className="w-full flex items-center justify-center gap-2 bg-gray-100 text-black font-semibold py-2 rounded border border-gray-300 hover:bg-gray-200 transition-colors"
             >
@@ -161,8 +213,13 @@ export default function SignUpModal({ open, onClose, onSwitchToSignIn }: SignUpM
               Sign up with Google
             </button>
             <p className="text-center text-text-muted text-sm mt-4">
-              Already have an account?{' '}
-              <span onClick={handleSwitchToSignIn} className="text-primary-yellow hover:underline font-semibold cursor-pointer">Sign In</span>
+              Already have an account?{" "}
+              <span
+                onClick={handleSwitchToSignIn}
+                className="text-primary-yellow hover:underline font-semibold cursor-pointer"
+              >
+                Sign In
+              </span>
             </p>
           </>
         )}

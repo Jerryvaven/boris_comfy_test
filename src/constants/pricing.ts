@@ -10,10 +10,10 @@ export const PRICING_PLANS = [
       "Basic PDF export",
       "Character creation (no illustrations)",
       "5 projects",
-      "Community support"
+      "Community support",
     ],
     cta: "Get Started",
-    popular: false
+    popular: false,
   },
   {
     name: "Standard",
@@ -28,10 +28,10 @@ export const PRICING_PLANS = [
       "20 projects",
       "Print service integration",
       "Marketplace listing",
-      "Priority support"
+      "Priority support",
     ],
     cta: "Get Started",
-    popular: true
+    popular: true,
   },
   {
     name: "Professional",
@@ -48,23 +48,23 @@ export const PRICING_PLANS = [
       "Commercial license",
       "API access (coming soon)",
       "Dedicated support",
-      "Early access to new features"
+      "Early access to new features",
     ],
     cta: "Get Started",
-    popular: false
-  }
+    popular: false,
+  },
 ];
 
 export const ALL_PLANS_FEATURES = [
   { title: "Auto-Save", desc: "Never lose your work with automatic saving" },
   { title: "Cloud Storage", desc: "Access your projects from anywhere" },
   { title: "Regular Updates", desc: "New features and improvements monthly" },
-  { title: "Community Access", desc: "Join our creator community" }
+  { title: "Community Access", desc: "Join our creator community" },
 ];
 
 export const CREDIT_PACKAGES = [
   { credits: "50", price: "$9.99", bestValue: false },
   { credits: "100", price: "$17.99", bestValue: false },
   { credits: "250", price: "$39.99", bestValue: false },
-  { credits: "500", price: "$69.99", bestValue: true }
+  { credits: "500", price: "$69.99", bestValue: true },
 ];

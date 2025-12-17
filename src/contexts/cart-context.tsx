@@ -1,6 +1,12 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
 
 interface CartItem {
   key: string;
@@ -21,7 +27,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   // Load cart from localStorage
   useEffect(() => {
-    const storedCart = localStorage.getItem('cart');
+    const storedCart = localStorage.getItem("cart");
     if (storedCart) {
       let parsed = JSON.parse(storedCart);
       // Check if old format (array of items)
@@ -35,11 +41,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
           acc[key].count += 1;
           return acc;
         }, {});
-        parsed = Object.entries(grouped).map(([key, { count, item }]: [string, any]) => ({
-          key,
-          quantity: count,
-          item
-        }));
+        parsed = Object.entries(grouped).map(
+          ([key, { count, item }]: [string, any]) => ({
+            key,
+            quantity: count,
+            item,
+          })
+        );
       }
       setCart(parsed);
     }
@@ -47,14 +55,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   // Save cart to localStorage whenever cart changes
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
   const addToCart = (item: any, key: string) => {
-    setCart(prev => {
-      const existing = prev.find(c => c.key === key);
+    setCart((prev) => {
+      const existing = prev.find((c) => c.key === key);
       if (existing) {
-        return prev.map(c => c.key === key ? { ...c, quantity: c.quantity + 1 } : c);
+        return prev.map((c) =>
+          c.key === key ? { ...c, quantity: c.quantity + 1 } : c
+        );
       } else {
         return [...prev, { key, quantity: 1, item }];
       }
@@ -62,14 +72,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   const updateQuantity = (key: string, delta: number) => {
-    setCart(prev => {
-      const existing = prev.find(c => c.key === key);
+    setCart((prev) => {
+      const existing = prev.find((c) => c.key === key);
       if (existing) {
         const newQuantity = existing.quantity + delta;
         if (newQuantity <= 0) {
-          return prev.filter(c => c.key !== key);
+          return prev.filter((c) => c.key !== key);
         } else {
-          return prev.map(c => c.key === key ? { ...c, quantity: newQuantity } : c);
+          return prev.map((c) =>
+            c.key === key ? { ...c, quantity: newQuantity } : c
+          );
         }
       }
       return prev;
@@ -86,7 +98,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 export function useCart() {
   const context = useContext(CartContext);
   if (!context) {
-    throw new Error('useCart must be used within a CartProvider');
+    throw new Error("useCart must be used within a CartProvider");
   }
   return context;
 }

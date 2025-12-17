@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import React from 'react'
-import { motion } from 'framer-motion'
-import { HOW_IT_WORKS_STEPS } from '../../constants/how-it-works'
+import React from "react";
+import { motion } from "framer-motion";
+import { HOW_IT_WORKS_STEPS } from "../../constants/how-it-works";
 
 export function HowItWorks() {
-  const titleText = "HOW IT WORKS"
-  const titleLetters = titleText.split("")
+  const titleText = "HOW IT WORKS";
+  const titleLetters = titleText.split("");
 
   return (
     <section className="py-16 px-4 bg-black text-white">
@@ -20,8 +20,8 @@ export function HowItWorks() {
             visible: {
               transition: {
                 staggerChildren: 0.08,
-              }
-            }
+              },
+            },
           }}
         >
           {titleLetters.map((letter, index) => (
@@ -33,7 +33,7 @@ export function HowItWorks() {
                   opacity: 0,
                   y: 50,
                   rotateX: -90,
-                  scale: 0.5
+                  scale: 0.5,
                 },
                 visible: {
                   opacity: 1,
@@ -45,14 +45,14 @@ export function HowItWorks() {
                     ease: "easeOut",
                     type: "spring",
                     stiffness: 200,
-                    damping: 15
-                  }
-                }
+                    damping: 15,
+                  },
+                },
               }}
               whileHover={{
                 scale: 1.2,
                 color: "#f97316", // orange-500
-                transition: { duration: 0.2 }
+                transition: { duration: 0.2 },
               }}
             >
               {letter}
@@ -68,23 +68,23 @@ export function HowItWorks() {
                 opacity: 0,
                 y: 50,
                 scale: 0.8,
-                rotateX: 15
+                rotateX: 15,
               }}
               whileInView={{
                 opacity: 1,
                 y: 0,
                 scale: 1,
-                rotateX: 0
+                rotateX: 0,
               }}
               whileHover={{
                 y: -10,
                 scale: 1.02,
-                transition: { duration: 0.2 }
+                transition: { duration: 0.2 },
               }}
               transition={{
                 duration: 0.7,
                 delay: idx * 0.15,
-                ease: "easeOut"
+                ease: "easeOut",
               }}
               viewport={{ once: true }}
             >
@@ -96,13 +96,17 @@ export function HowItWorks() {
                 transition={{
                   duration: 0.6,
                   delay: idx * 0.15 + 0.3,
-                  rotate: { duration: 0.8, ease: "easeInOut" }
+                  rotate: { duration: 0.8, ease: "easeInOut" },
                 }}
                 viewport={{ once: true }}
               >
                 <motion.div
                   animate={{ rotate: [0, 5, -5, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                 >
                   <step.icon className="w-8 h-8 text-white" />
                 </motion.div>
@@ -132,5 +136,5 @@ export function HowItWorks() {
         </div>
       </div>
     </section>
-  )
+  );
 }

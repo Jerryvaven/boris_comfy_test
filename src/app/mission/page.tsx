@@ -77,36 +77,29 @@ export default function MissionPage() {
     <div className="min-h-screen bg-black">
       <Navbar showSearch={false} />
 
-      <main className="relative pt-24 pb-20">
+      <main className="relative pt-4 pb-20">
         {/* Subtle Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-orange-500/5 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4">
           {/* Hero Content */}
           <motion.div
-            className="mb-20"
+            className="mb-12"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
             <motion.div
-              className="flex items-center justify-center mb-6"
+              className="flex items-center justify-center mb-4"
               variants={itemVariants}
-            >
-              <motion.div
-                className="bg-yellow-500/10 p-4 rounded-2xl border border-yellow-500/20"
-                whileHover={{ scale: 1.05 }}
-              >
-                <FaRocket className="text-5xl text-yellow-500" />
-              </motion.div>
-            </motion.div>
+            ></motion.div>
             <motion.h1
-              className="text-4xl md:text-6xl font-bold text-white mb-6 text-center"
+              className="text-4xl md:text-5xl font-bold text-white mb-4 text-center"
               variants={itemVariants}
             >
               Our Mission
             </motion.h1>
             <motion.p
-              className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto text-center"
+              className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto text-center"
               variants={itemVariants}
             >
               Democratizing comic creation through the power of artificial
@@ -116,7 +109,7 @@ export default function MissionPage() {
 
           {/* Empowering Creators Section */}
           <motion.div
-            className="bg-black/50 backdrop-blur-sm rounded-2xl p-8 md:p-12 mb-16 border border-yellow-500/20"
+            className="bg-black/50 backdrop-blur-sm rounded-2xl p-8 md:p-12 mb-12 border border-yellow-500/20"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -156,7 +149,7 @@ export default function MissionPage() {
 
           {/* Building a Community Section */}
           <motion.div
-            className="bg-black/50 backdrop-blur-sm rounded-2xl p-8 md:p-12 mb-16 border border-purple-500/20"
+            className="bg-black/50 backdrop-blur-sm rounded-2xl p-8 md:p-12 mb-12 border border-purple-500/20"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -202,7 +195,7 @@ export default function MissionPage() {
 
           {/* Mission Values Grid */}
           <motion.div
-            className="grid md:grid-cols-2 gap-6 mb-16"
+            className="grid md:grid-cols-2 gap-6 mb-12"
             variants={containerVariants}
             initial="hidden"
             animate="visible"

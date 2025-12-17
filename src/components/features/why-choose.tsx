@@ -1,6 +1,6 @@
-"use client"
-import { motion } from 'framer-motion'
-import { WHY_CHOOSE_FEATURES } from '@/constants/why-choose'
+"use client";
+import { motion } from "framer-motion";
+import { WHY_CHOOSE_FEATURES } from "@/constants/why-choose";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -11,7 +11,7 @@ const containerVariants = {
       delayChildren: 0.3,
     },
   },
-}
+};
 
 const itemVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -23,18 +23,18 @@ const itemVariants = {
       ease: "easeOut",
     },
   },
-}
+};
 
 export function WhyChoose() {
-  const titleText = "WHY CHOOSE INKTRON?"
-  const titleLetters = titleText.split("")
+  const titleText = "WHY CHOOSE INKTRON?";
+  const titleLetters = titleText.split("");
 
   return (
     <section className="py-20 bg-black">
       <div className="max-w-6xl mx-auto px-4">
         <motion.div
           className="text-4xl md:text-5xl font-extrabold text-center mb-16 text-yellow-400 tracking-wide uppercase flex justify-center items-center flex-wrap"
-          style={{letterSpacing: '0.03em'}}
+          style={{ letterSpacing: "0.03em" }}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -42,8 +42,8 @@ export function WhyChoose() {
             visible: {
               transition: {
                 staggerChildren: 0.08,
-              }
-            }
+              },
+            },
           }}
         >
           {titleLetters.map((letter, index) => (
@@ -55,7 +55,7 @@ export function WhyChoose() {
                   opacity: 0,
                   y: 50,
                   rotateX: -90,
-                  scale: 0.5
+                  scale: 0.5,
                 },
                 visible: {
                   opacity: 1,
@@ -67,21 +67,21 @@ export function WhyChoose() {
                     ease: "easeOut",
                     type: "spring",
                     stiffness: 200,
-                    damping: 15
-                  }
-                }
+                    damping: 15,
+                  },
+                },
               }}
               whileHover={{
                 scale: 1.2,
                 color: "#f97316", // orange-500
-                transition: { duration: 0.2 }
+                transition: { duration: 0.2 },
               }}
             >
               {letter}
             </motion.span>
           ))}
         </motion.div>
-        
+
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -89,7 +89,7 @@ export function WhyChoose() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
         >
           {WHY_CHOOSE_FEATURES.map((feature, index) => {
-            const Icon = feature.icon
+            const Icon = feature.icon;
             return (
               <motion.div
                 key={feature.title}
@@ -105,15 +105,22 @@ export function WhyChoose() {
                   transition={{ duration: 0.5 }}
                   className="mb-4"
                 >
-                  <Icon className="w-14 h-14 text-yellow-400" strokeWidth={2.5} />
+                  <Icon
+                    className="w-14 h-14 text-yellow-400"
+                    strokeWidth={2.5}
+                  />
                 </motion.div>
-                <div className="font-extrabold text-lg uppercase text-yellow-400 mb-1 tracking-wide">{feature.title}</div>
-                <div className="text-gray-200 text-base font-normal">{feature.description}</div>
+                <div className="font-extrabold text-lg uppercase text-yellow-400 mb-1 tracking-wide">
+                  {feature.title}
+                </div>
+                <div className="text-gray-200 text-base font-normal">
+                  {feature.description}
+                </div>
               </motion.div>
-            )
+            );
           })}
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

@@ -39,22 +39,25 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
   /* Primary Colors */
-  --bg-dark: #0F0F0F;
-  --primary-yellow: #FFC107;
-  --secondary-orange: #F57C00;
-  --text-white: #FFFFFF;
-  --text-muted: #B0B0B0;
-  --card-bg: #1A1A1A;
+  --bg-dark: #0f0f0f;
+  --primary-yellow: #ffc107;
+  --secondary-orange: #f57c00;
+  --text-white: #ffffff;
+  --text-muted: #b0b0b0;
+  --card-bg: #1a1a1a;
   --card-hover: #242424;
+
+  /* VS Code Dark Theme Colors */
+  --vscode-editor-bg: #1E1E1E;
+  --vscode-sidebar-bg: #252526;
+  --vscode-active-item: #37373D;
+  --vscode-border: #2D2D2D;
 
   /* Border & Effects */
   --border-color: rgba(176, 176, 176, 0.2);
@@ -64,7 +67,7 @@ body {
   --yellow-bg-hover: rgba(255, 193, 7, 0.1);
 
   /* Typography */
-  --font-family: 'Inter', sans-serif;
+  --font-family: "Inter", sans-serif;
   --line-height: 1.6;
 
   /* Spacing & Layout */
@@ -91,6 +94,23 @@ body {
     text-wrap: balance;
   }
 
+  /* VS Code Dark Theme Utilities */
+  .bg-vscode-editor {
+    background-color: var(--vscode-editor-bg);
+  }
+
+  .bg-vscode-sidebar {
+    background-color: var(--vscode-sidebar-bg);
+  }
+
+  .bg-vscode-active {
+    background-color: var(--vscode-active-item);
+  }
+
+  .border-vscode {
+    border-color: var(--vscode-border);
+  }
+
   /* Custom shadow utilities with yellow and orange */
   .shadow-yellow {
     box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
@@ -109,11 +129,13 @@ body {
   }
 
   .shadow-yellow-orange {
-    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3), 0 0 20px rgba(245, 124, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3),
+      0 0 20px rgba(245, 124, 0, 0.2);
   }
 
   .shadow-yellow-orange-lg {
-    box-shadow: 0 8px 30px rgba(255, 193, 7, 0.4), 0 0 40px rgba(245, 124, 0, 0.3);
+    box-shadow: 0 8px 30px rgba(255, 193, 7, 0.4),
+      0 0 40px rgba(245, 124, 0, 0.3);
   }
 }
 
@@ -137,7 +159,6 @@ body {
 
 /* Animations */
 @keyframes pulse {
-
   0%,
   100% {
     transform: scale(1);
@@ -219,7 +240,6 @@ body {
   animation-play-state: paused;
 }
 
-
 @keyframes heroFadeIn {
   from {
     opacity: 0;
@@ -231,7 +251,6 @@ body {
 }
 
 @keyframes subtleFloat {
-
   0%,
   100% {
     transform: translateY(0);
@@ -243,19 +262,19 @@ body {
 }
 
 @keyframes glowPulse {
-
   0%,
   100% {
-    text-shadow: 0 0 20px rgba(255, 193, 7, 0.5), 0 0 40px rgba(255, 193, 7, 0.3);
+    text-shadow: 0 0 20px rgba(255, 193, 7, 0.5),
+      0 0 40px rgba(255, 193, 7, 0.3);
   }
 
   50% {
-    text-shadow: 0 0 35px rgba(255, 193, 7, 0.7), 0 0 70px rgba(255, 193, 7, 0.4);
+    text-shadow: 0 0 35px rgba(255, 193, 7, 0.7),
+      0 0 70px rgba(255, 193, 7, 0.4);
   }
 }
 
 @keyframes buttonPulse {
-
   0%,
   100% {
     box-shadow: 0 4px 15px rgba(245, 124, 0, 0.4);
@@ -299,7 +318,7 @@ body {
 
 .hero-content-card .hero-title-create {
   display: block;
-  color: #F5E6C8;
+  color: #f5e6c8;
   font-size: 2.8rem;
   font-weight: 800;
   font-style: italic;
@@ -319,7 +338,7 @@ body {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 193, 7, 0.2);
 }
 
-.hero-content-card>div {
+.hero-content-card > div {
   margin: -0.8rem 0 1.25rem 0;
   padding-left: 57%;
 }
@@ -328,7 +347,7 @@ body {
   font-size: 1.6rem;
   font-weight: 400;
   font-style: italic;
-  color: #F5E6C8;
+  color: #f5e6c8;
   margin-right: 0.4rem;
 }
 
@@ -350,7 +369,7 @@ body {
 
 .hero-content-card .btn-start {
   display: inline-block;
-  background: linear-gradient(135deg, #F57C00 0%, #FF9800 50%, #FFB300 100%);
+  background: linear-gradient(135deg, #f57c00 0%, #ff9800 50%, #ffb300 100%);
   color: var(--text-white);
   padding: 0.9rem 3rem;
   border-radius: 50px;
@@ -365,7 +384,7 @@ body {
 }
 
 .hero-content-card .btn-start:hover {
-  background: linear-gradient(135deg, #FFB300 0%, #FFC107 50%, #FFD54F 100%);
+  background: linear-gradient(135deg, #ffb300 0%, #ffc107 50%, #ffd54f 100%);
   color: #1a1a1a;
   transform: translateY(-3px) scale(1.02);
   box-shadow: 0 8px 30px rgba(255, 193, 7, 0.5);
